@@ -1,0 +1,27 @@
+<!-- <div class="row">
+<h1>Hi Test!</h1>
+<button class="btn-primary" (click)="onLogout()">Logout</button>
+  </div>
+<div class="container">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/voluteer" >Voluteer Track Sheet</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  routerLink="/category" >Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Users</a>
+        </li>
+      </ul>
+  </div>
+   -->
+
+  <ul>
+    <li><a>Hi {{userName}}!</a></li>
+    <li><a routerLink="/volunteer">volunteer Track Sheet</a></li>
+    <li><a routerLink="/category">Category</a></li>
+    <!-- <li><a href="#contact">Users</a></li> -->
+    <li style="float:right"><a class="active" (click)="onLogout()">Logout</a></li>
+  </ul>
+  

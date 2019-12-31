@@ -1,0 +1,35 @@
+<app-header [Path]='1'></app-header>
+<div class="container">
+    <table class="table table-striped">
+      <thead>
+          <tr>
+            <th>StudentName</th>
+            <th>DateOfService</th>
+            <th>HoursCompleted</th>
+            <th>Preparation</th>
+            <th>Action</th>
+            <th>Reflection</th>
+            <th>SupervisorFeedback</th>
+            <th>Approved</th>
+            <th>DateApproved</th>
+            <th>SupervisorUserName</th>
+            <th>Actions</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let volunteer of VolunteerList">
+          <td [attr.contenteditable]='contenteditable'>{{ volunteer.StudentName }}</td>
+          <td [attr.contenteditable]='contenteditable'>{{ volunteer.DateOfService }}</td>
+          <td [attr.contenteditable]='contenteditable'>{{ volunteer.HoursCompleted }}</td>
+          <td [attr.contenteditable]='contenteditable'>{{ volunteer.Preparation }}</td>
+          <td [attr.contenteditable]='contenteditable'>{{ volunteer.Action }}</td>
+          <td [attr.contenteditable]='contenteditable'>{{ volunteer.Reflection }}</td>
+          <td [attr.contenteditable]='contenteditable'>{{ volunteer.SupervisorFeedback }}</td>
+          <td [attr.contenteditable]='contenteditable'>{{ volunteer.Approved }}</td>
+          <td [attr.contenteditable]='contenteditable'>{{ volunteer.DateApproved }}</td>
+          <td [attr.contenteditable]='contenteditable'>{{ volunteer.SupervisorUserName }}</td>
+          <td [attr.contenteditable]='contenteditable'><button (click)="onEdit(volunteer)">{{actiontext}}</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

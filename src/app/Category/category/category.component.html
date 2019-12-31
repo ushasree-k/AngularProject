@@ -1,0 +1,56 @@
+<app-header [Path]='2' ></app-header>
+<div class="row">
+  <div class="col-lg-2"></div>
+  <div class="col-lg-8">
+<ul>
+  <li>
+    <a (click)="EditCategory='false';AddCategory='true';DeleteCategory='false'">
+      Add Category
+    </a>
+  </li>
+  <li>
+      <a (click)="EditCategory='true';AddCategory='false';DeleteCategory='false'">
+        Edit Category
+      </a>
+    </li>
+    <li>
+        <a (click)="EditCategory='false';AddCategory='false';DeleteCategory='true'">
+          Delete Category
+        </a>
+      </li>
+</ul>
+<div class="container" *ngIf="EditCategory==='false' && AddCategory==='false'&& DeleteCategory==='false'">
+    <table class="table table-striped">
+      <thead>
+          <tr>
+            <th>CategoryName</th>
+            <th>CategoryProgram</th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categoryList">
+          <td>{{ category.CategoryName }}</td>
+          <td>{{ category.CategoryProgram }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="col-lg-2"></div>
+</div>
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+  <div *ngIf="AddCategory=='true'">
+    <app-add-category></app-add-category>
+  </div>
+  <div *ngIf="EditCategory=='true'">
+      <app-edit-category></app-edit-category>
+    </div>
+    <div *ngIf="DeleteCategory=='true'">
+        <app-delete-category></app-delete-category>
+      </div>
+    </div>
+      <div class="col-lg-2"></div>
+</div>
+

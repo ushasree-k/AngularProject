@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+      <span class="text-center">
+        Who wants to register
+    </span>
+  </div>
+    <div class="col-lg-4"></div>
+</div>
+<div class="row">
+    <div class="col-lg-4"></div>
+<div class="col-lg-4">
+<select class="form-control mb-4" [(ngModel)]="register">
+    <option value="false">Are you Student/Staff</option>
+    <option *ngFor="let role of roles">{{role}}</option>
+  </select>
+</div>
+<div class="col-lg-4"></div>
+</div>
+<div class="row">
+<div class="col-lg-4"></div>
+<div class="col-lg-4">
+<div *ngIf="register=='student'">
+  
+      <app-studentregister></app-studentregister>
+  
+</div>
+<div *ngIf="register=='staff'">
+
+
+    <app-staffregister></app-staffregister>
+
+
+</div>
+</div>
+<div class="col-lg-4"></div>
+</div>
