@@ -1,0 +1,77 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+      <label for="studentName">Student Name</label>
+      <input type="text" formControlName="studentName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.studentName.errors }" />
+      <div *ngIf="submitted && f.studentName.errors" class="invalid-feedback">
+          <div *ngIf="f.studentName.errors.required">Student Name is required</div>
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="dateofService">Date of Service</label>
+      <input type="text" formControlName="dateofService" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dateofService.errors }" />
+      <div *ngIf="submitted && f.dateofService.errors" class="invalid-feedback">
+          <div *ngIf="f.dateofService.errors.required">Date of Service is required</div>
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="hours">Hours Completed</label>
+      <input type="text" formControlName="hours" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.hours.errors }" />
+      <div *ngIf="submitted && f.hours.errors" class="invalid-feedback">
+          <div *ngIf="f.hours.errors.required">Hours is required</div>
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="preparation">Preparation</label>
+      <input type="text" formControlName="preparation" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.preparation.errors }" />
+      <div *ngIf="submitted && f.preparation.errors" class="invalid-feedback">
+          <div *ngIf="f.preparation.errors.required">Preparation is required</div>
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="action">Action</label>
+      <input type="text" formControlName="action" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.action.errors }" />
+      <div *ngIf="submitted && f.action.errors" class="invalid-feedback">
+          <div *ngIf="f.action.errors.required">Action is required</div>
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="reflection">Reflection</label>
+      <input type="text" formControlName="reflection" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.reflection.errors }" />
+      <div *ngIf="submitted && f.reflection.errors" class="invalid-feedback">
+          <div *ngIf="f.reflection.errors.required">School is required</div>
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="supervisorFeedback">SupervisorFeedback</label>
+      <input type="text" formControlName="supervisorFeedback" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.supervisorFeedback.errors }" />
+      <div *ngIf="submitted && f.supervisorFeedback.errors" class="invalid-feedback">
+          <div *ngIf="f.supervisorFeedback.errors.required">SupervisorFeedback is required</div>
+      </div>
+  </div>
+  <div class="form-group">
+      <label for="approved">Approved</label>
+      <input type="text" formControlName="approved" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.approved.errors }" />
+      <div *ngIf="submitted && f.approved.errors" class="invalid-feedback">
+          <div *ngIf="f.approved.errors.required">approved is required</div>
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="dateApproved">DateApproved</label>
+    <input type="text" formControlName="dateApproved" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dateApproved.errors }" />
+    <div *ngIf="submitted && f.dateApproved.errors" class="invalid-feedback">
+        <div *ngIf="f.dateApproved.errors.required">DateApproved is required</div>
+    </div>
+</div>
+<div class="form-group">
+  <label for="supervisorUserName">SupervisorUserName</label>
+  <input type="text" formControlName="supervisorUserName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.supervisorUserName.errors }" />
+  <div *ngIf="submitted && f.supervisorUserName.errors" class="invalid-feedback">
+      <div *ngIf="f.supervisorUserName.errors.required">SupervisorUserName is required</div>
+  </div>
+</div>
+  <div class="form-group">
+      <button [disabled]="loading" class="btn btn-primary">Register</button>
+      <img *ngIf="loading" class="pl-3" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      <a routerLink="/login" class="btn btn-link">Cancel</a>
+  </div>
+</form>

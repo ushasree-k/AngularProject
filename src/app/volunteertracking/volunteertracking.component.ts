@@ -17,14 +17,15 @@ export class VolunteertrackingComponent implements OnInit {
   constructor(private router:Router) {
     var user = JSON.parse(localStorage.getItem('currentUser'));
     if(user){
-        this.router.navigate(['volunteer']);
+        //this.router.navigate(['volunteer']);
     }
     else{
         this.router.navigate(['/']);
     }
     this.contenteditable = false;
     this.actiontext="Edit";
-    this.VolunteerList = this.VolunteerList.filter(x=>x.userName == user[0].UserName)
+    if(user[0].Role=='Student'){
+    this.VolunteerList = this.VolunteerList.filter(x=>x.userName == user[0].UserName)}
    }
 
   ngOnInit() {

@@ -14,7 +14,8 @@ import { DeleteCategoryComponent } from './Category/delete-category/delete-categ
 import { CategoryComponent } from './Category/category/category.component';
 import { MatTableModule } from '@angular/material';
 import { VolunteertrackingComponent } from './volunteertracking/volunteertracking.component';
-import { HeaderComponent } from './header/header.component'; 
+import { HeaderComponent } from './header/header.component';
+import { VoluteerregisterComponent } from './voluteerregister/voluteerregister.component'; 
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HeaderComponent } from './header/header.component';
     DeleteCategoryComponent,
     CategoryComponent,
     VolunteertrackingComponent,
-    HeaderComponent
+    HeaderComponent,
+    VoluteerregisterComponent
   ],
   imports: [
     BrowserModule,

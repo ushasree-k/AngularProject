@@ -11,11 +11,7 @@ export class CategoryComponent implements OnInit {
   DeleteCategory :string;
   EditCategory:string;
   AddCategory:string;
-  categoryList:CategoryModel[]=[
-    {"CategoryName" : 'HealthCare',"CategoryProgram":'Hospitol'},
-    {"CategoryName" : 'Healthcare',"CategoryProgram":'Oldage Homes'},
-    {"CategoryName" : 'Fire department',"CategoryProgram":'Rescue'},
-    {"CategoryName" : 'Kicks Karate',"CategoryProgram":'Instructor'}];
+  categoryList:CategoryModel[]=[]
     displayedColumns:string[];
     dataSource:any;
   constructor(private router:Router) { 
@@ -26,11 +22,22 @@ export class CategoryComponent implements OnInit {
     else{
         this.router.navigate(['/']);
     }
+    if(localStorage.getItem("categoryList")){
+      this.categoryList = JSON.parse(localStorage.getItem("categoryList"));
+    }
+    else{
+      this.categoryList = 
+      [
+        {"CategoryName" : 'HealthCare',"CategoryProgram":'Hospitol'},
+        {"CategoryName" : 'Healthcare',"CategoryProgram":'Oldage Homes'},
+        {"CategoryName" : 'Fire department',"CategoryProgram":'Rescue'},
+        {"CategoryName" : 'Kicks Karate',"CategoryProgram":'Instructor'}];
+        localStorage.setItem("categoryList",JSON.stringify(this.categoryList));
+    }
+    console.log(this.categoryList);
     this.EditCategory='false';
     this.AddCategory='false';
     this.DeleteCategory='false';
-    this.displayedColumns = ['CategoryName', 'CategoryProgram'];
-    this.dataSource = this.categoryList;
   }
 
   ngOnInit() {
