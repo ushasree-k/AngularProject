@@ -22,6 +22,7 @@
     <li><a routerLink="/volunteer">volunteer Track Sheet</a></li>
     <li><a routerLink="/category">Category</a></li>
     <!-- <li><a href="#contact">Users</a></li> -->
+    <li style="float:center"><a class="active">Logged in at : {{logtime | date:'yyyy-MMM-dd HH:mm:ss'}}</a></li>
     <li style="float:right"><a class="active" (click)="onLogout()">Logout</a></li>
   </ul>
   

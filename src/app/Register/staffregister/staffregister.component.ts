@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {AlertserviceService} from '../../alertservice.service';
 import { UserModel } from 'src/app/Model/user.model';
+import { RegistrationService } from 'src/app/Services/registration.service';
 
 @Component({
   selector: 'app-staffregister',
@@ -20,6 +21,7 @@ export class StaffregisterComponent implements OnInit {
   constructor(
       private formBuilder: FormBuilder,
       private router: Router,
+      private registrationService:RegistrationService,
       // private authenticationService: AuthenticationService,
       // private userService: UserService,
        private alertService: AlertserviceService
@@ -73,10 +75,10 @@ export class StaffregisterComponent implements OnInit {
       this.registereduser.Role = this.registerForm.get("role").value;
       this.registereduser.Status = 'Active';
 
-      this.existinguserList.push(this.registereduser);
-
-      console.log(this.existinguserList)
-      localStorage.setItem("existinguserList",JSON.stringify(this.existinguserList));
+      // this.existinguserList.push(this.registereduser);
+      this.registrationService.RegisterStaff(this.registereduser);
+      // console.log(this.existinguserList)
+      // localStorage.setItem("existinguserList",JSON.stringify(this.existinguserList));
       this.loading = true;
       this.alertService.success('Registration successful', true);
       this.router.navigate(['/login']);

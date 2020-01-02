@@ -1,5 +1,179 @@
 <app-header [Path]='1'></app-header>
-<div class="container">
+<div class="container">  
+  
+<mat-card>  
+  <mat-toolbar color="accent">  
+    <div style="color:white;text-align: right;">  
+      Add your Voluteer Data here
+    </div>    
+  </mat-toolbar>  
+<br><br>  
+  <mat-card-content>  
+    <form [formGroup]="voluteerForm"(ngSubmit)="onFormSubmit(voluteerForm.value)">  
+            <table>  
+              <tr>  
+                <td class="tbl1">  
+                  <mat-form-field class="demo-full-width">  
+                    <input formControlName="StudentName" matTooltip="Enter Student Name" matInput placeholder="Student Name">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!voluteerForm.get('StudentName').value && voluteerForm.get('StudentName').touched"></span>  
+                  </mat-error>  
+                </td>  
+                <td class="tbl1">  
+                  <mat-form-field class="demo-full-width">  
+                    <input matInput [matDatepicker]="picker"matTooltip="Enter Date Of Service" formControlName="DateOfService"placeholder="Choose Date Of Service">  
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>  
+                    <mat-datepicker #picker></mat-datepicker>  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!voluteerForm.get('DateOfService').value && voluteerForm.get('DateOfService').touched"></span>  
+                  </mat-error>  
+                </td>  
+                <td class="tbl1">  
+                  <mat-form-field class="demo-full-width">  
+                    <input formControlName="HoursCompleted" matTooltip="Enter Hours Completed" matInput placeholder="HoursCompleted">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!voluteerForm.get('HoursCompleted').value && voluteerForm.get('HoursCompleted').touched"></span>  
+                  </mat-error>  
+                </td>  
+                <td class="tbl1">  
+                  <mat-form-field class="demo-full-width">  
+                    <input formControlName="Preparation" matTooltip="Enter Preparation" matInput placeholder="Preparation">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!voluteerForm.get('Preparation').value && voluteerForm.get('Preparation').touched"></span>  
+                  </mat-error>  
+                </td>  
+                <td class="tbl1">  
+                  <mat-form-field class="demo-full-width">  
+                    <input matTooltip="Enter Action"formControlName="Action" matInput placeholder="Action">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!voluteerForm.get('Action').value && voluteerForm.get('Action').touched"></span>  
+                  </mat-error>  
+                </td>  
+              </tr>  
+              <tr>  
+                <!-- <td class="tbl1">  
+                  <span>Gender</span>  
+                  <br><br>  
+                  <mat-radio-group matTooltip="Enter Gender"formControlName="Gender">  
+                      <mat-radio-button value="0">Male</mat-radio-button>    
+                      <mat-radio-button value="1">Female</mat-radio-button>  
+                    </mat-radio-group>  
+                  <mat-error>  
+                    <span *ngIf="!voluteerForm.get('Gender').value && voluteerForm.get('Gender').touched"></span>  
+                  </mat-error>  
+                </td>   -->
+                <td class="tbl1" *ngIf="currentUser[0].Role !='Student'">  
+                  <mat-form-field class="demo-full-width">  
+                    <input formControlName="Reflection" matTooltip="Enter Reflection" matInput placeholder="Reflection">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!voluteerForm.get('Reflection').value && voluteerForm.get('Reflection').touched"></span>  
+                  </mat-error>  
+                </td>  
+                <td class="tbl1">  
+                  <mat-form-field class="demo-full-width">  
+                    <input formControlName="SupervisorFeedback" matTooltip="Enter Supervisor Feedback" matInput placeholder="SupervisorFeedback">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!voluteerForm.get('SupervisorFeedback').value && voluteerForm.get('SupervisorFeedback').touched"></span>  
+                  </mat-error>  
+                </td>  
+
+                <td class="tbl1" *ngIf="currentUser[0].Role !='Student'">  
+                  <span>Status</span>  
+                  <br><br>  
+                  <mat-radio-group matTooltip="Select Status"formControlName="Approved">  
+                      <mat-radio-button value="0">Approved</mat-radio-button>    
+                      <mat-radio-button value="1">Rejected</mat-radio-button>  
+                    </mat-radio-group>  
+                  <mat-error>  
+                    <span *ngIf="!voluteerForm.get('Approved').value && voluteerForm.get('Approved').touched"></span>  
+                  </mat-error>  
+                </td>  
+                <td class="tbl1" *ngIf="currentUser[0].Role !='Student'">  
+                  <mat-form-field class="demo-full-width">  
+                    <input matInput [matDatepicker]="pickeranother"matTooltip="Date Of Approved" formControlName="DateApproved"placeholder="Choose Date Of Approved">  
+                    <mat-datepicker-toggle matSuffix [for]="pickeranother"></mat-datepicker-toggle>  
+                    <mat-datepicker #pickeranother></mat-datepicker>  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!voluteerForm.get('DateApproved').value && voluteerForm.get('DateApproved').touched"></span>  
+                  </mat-error>  
+                </td>  
+                <td class="tbl1" *ngIf="currentUser[0].Role !='Student'">  
+                  <mat-form-field class="demo-full-width">  
+                    <input formControlName="SupervisorUserName" matTooltip="Enter SupervisorUserName" matInput placeholder="SupervisorUserName">  
+                  </mat-form-field>  
+                  <mat-error>  
+                    <span *ngIf="!voluteerForm.get('SupervisorUserName').value && voluteerForm.get('SupervisorUserName').touched"></span>  
+                  </mat-error>  
+                </td>  
+              </tr> 
+              <tr>  
+                <td></td>
+                <td></td>
+                <td></td>  
+                <td  class="content-center">  
+                  <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button"[disabled]="!voluteerForm.valid">Submit</button>      
+                  <button type="reset" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="resetForm()">Reset</button>  
+                </td>  
+                <td>  
+                  <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success">  
+                    {{message}}  
+                  </p>  
+                </td>  
+              </tr>  
+            </table>  
+<br><br>  
+      <table class="table" >  
+          <tr ngclass="btn-primary">  
+            <th class="tb12">StudentName</th>
+            <th class="tb12">DateOfService</th>
+            <th class="tb12">Hours</th>
+            <th class="tb12">Preparation</th>
+            <th class="tb12">Action</th>
+            <th class="tb12">Reflection</th>
+            <th class="tb12">Feedback</th>
+            <th class="tb12">Status</th>
+            <th class="tb12">DateApproved</th>
+            <th class="tb12">SupervisorName</th>
+            <th class="tbl2">Edit</th>  
+            <th class="tbl2">Delete</th>  
+          </tr>  
+          <tr *ngFor="let volunteer of VolunteerList">  
+              <td class="tbl2">{{ volunteer.StudentName }}</td>
+              <td class="tbl2">{{ volunteer.DateOfService | date }}</td>
+              <td class="tbl2">{{ volunteer.HoursCompleted }}</td>
+              <td class="tbl2">{{ volunteer.Preparation }}</td>
+              <td class="tbl2">{{ volunteer.Action }}</td>
+              <td class="tbl2">{{ volunteer.Reflection }}</td>
+              <td class="tbl2">{{ volunteer.SupervisorFeedback }}</td>
+              <td class="tbl2">{{ volunteer.Approved ==0? 'Approved' :(volunteer.Approved==2?'InProgress':  'Rejected') }}</td>
+              <td class="tbl2">{{ volunteer.DateApproved | date }}</td>
+              <td class="tbl2">{{ volunteer.SupervisorUserName }}</td>
+
+            <td class="tbl2">  
+              <button type="button" class="btn btn-info"matTooltip="Click Edit Button"(click)="loadStudentDataToEdit(volunteer.StudentId)">Edit</button>  
+            </td>  
+            <td class="tbl2">  
+              <button type="button" class="btn btn-danger"matTooltip="Click Delete Button"(click)="deleteStudent(volunteer.StudentId)">Delete</button>  
+            </td>  
+          </tr>  
+  
+        </table>  
+    </form>  
+  </mat-card-content>  
+</mat-card>  
+</div>  
+
+
+
+<!-- <div class="container">
     <table class="table table-striped">
       <thead>
           <tr>
@@ -32,4 +206,4 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </div> -->

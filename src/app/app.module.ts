@@ -16,8 +16,16 @@ import { MatTableModule } from '@angular/material';
 import { VolunteertrackingComponent } from './volunteertracking/volunteertracking.component';
 import { HeaderComponent } from './header/header.component';
 import { VoluteerregisterComponent } from './voluteerregister/voluteerregister.component'; 
+import { HttpClientModule } from '@angular/common/http';
+import {  
+  MatButtonModule, MatMenuModule, MatDatepickerModule,MatNativeDateModule , MatIconModule, MatCardModule, MatSidenavModule,MatFormFieldModule,  
+  MatInputModule, MatTooltipModule, MatToolbarModule  
+} from '@angular/material';  
+import { MatRadioModule } from '@angular/material/radio';  
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';  
 
 @NgModule({
+  
   declarations: [
     AppComponent,
     LoginComponent,
@@ -37,9 +45,23 @@ import { VoluteerregisterComponent } from './voluteerregister/voluteerregister.c
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,FormsModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule,
+    MatButtonModule,  
+    MatMenuModule,  
+    MatDatepickerModule,  
+    MatNativeDateModule,  
+    MatIconModule,  
+    MatRadioModule,  
+    MatCardModule,  
+    MatSidenavModule,  
+    MatFormFieldModule,  
+    MatInputModule,  
+    MatTooltipModule,  
+    MatToolbarModule,  
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

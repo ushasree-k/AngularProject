@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertserviceService } from 'src/app/alertservice.service';
 import { UserModel } from 'src/app/Model/user.model';
+import { RegistrationService } from 'src/app/Services/registration.service';
 
 @Component({
   selector: 'app-studentregister',
@@ -19,6 +20,7 @@ export class StudentregisterComponent implements OnInit {
   constructor(
       private formBuilder: FormBuilder,
       private router: Router,
+      private registrationService:RegistrationService,
       // private authenticationService: AuthenticationService,
       // private userService: UserService,
       private alertService: AlertserviceService
@@ -65,8 +67,10 @@ export class StudentregisterComponent implements OnInit {
       this.registereduser.Role = 'Student';
       this.registereduser.Status = 'Active';
 
-      this.existinguserList.push(this.registereduser);
-      localStorage.setItem("existinguserList",JSON.stringify(this.existinguserList));
+      //this.existinguserList.push(this.registereduser);
+
+      this.registrationService.RegisterStudent(this.registereduser);
+      //localStorage.setItem("existinguserList",JSON.stringify(this.existinguserList));
       this.loading = true;
       this.alertService.success('Registration successful', true);
       this.router.navigate(['/login']);

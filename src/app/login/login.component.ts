@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../Services/authentication.service';
 import { UserModel } from '../Model/user.model';
 
 //import { AlertService, AuthenticationService } from '@/_services';
@@ -23,26 +23,7 @@ export class LoginComponent implements OnInit {
         // private alertService: AlertService
     ) {
         // redirect to home if already logged in
-        // if (this.authenticationService.currentUserValue) { 
-        //     this.router.navigate(['/']);
-        // }
-        this.existinguserList =JSON.parse(localStorage.getItem("existinguserList"));
-        console.log(this.existinguserList);
-        if(this.existinguserList){
-
-        }
-        else{
-            this.existinguserList = [{"UserName":"usha","PassWord":"test","Role":"student","Status":"InActive","Email":"u@gmail.com"},
-            {"UserName":"sarat","PassWord":"text","Role":"superAdmin","Status":"Active","Email":"pj@gmail.com"}]
-            localStorage.setItem("existinguserList",JSON.stringify(this.existinguserList));
-        }
-        
-
-        var user = localStorage.getItem('currentUser');
-        if(user){
-            this.router.navigate(['volunteer']);
-        }
-        else{
+        if (this.authenticationService.currentUserValue) { 
             this.router.navigate(['/']);
         }
     }
@@ -69,7 +50,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        var user = this.authenticationService.login(this.f.username.value, this.f.password.value,this.existinguserList);
+        var user = this.authenticationService.login(this.f.username.value, this.f.password.value);
         if(user){
             this.router.navigate(['volunteer']);
         }

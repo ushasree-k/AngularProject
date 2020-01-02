@@ -1,6 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserModel } from '../Model/user.model';
+import { getLocaleDateTimeFormat } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -13,9 +14,11 @@ step1:string;
 step2:string;
 userName:string;
 user:UserModel;
+logtime:Date;
   constructor(private router:Router) { 
     this.user =JSON.parse(localStorage.getItem('currentUser'));
     this.userName= this.user[0].UserName;
+    this.logtime =new Date();
   }
 
   ngOnInit() {

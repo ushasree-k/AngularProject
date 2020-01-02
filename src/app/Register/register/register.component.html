@@ -1,21 +1,20 @@
+
+
 <div class="row">
     <div class="col-lg-4"></div>
-    <div class="col-lg-4">
+    <div class="col-lg-4" style="border: solid 1px;">
       <span class="text-center">
-        Who wants to register
+        <p class="content-center">Who wants to register</p> <br>
+        <div  class="content-center">  
+          <button type="submit" mat-raised-button color="accent"matTooltip="Click Submit Button" (click)="register = 'student'">Student register</button>   
+          &nbsp;   &nbsp; &nbsp;&nbsp;
+          <button type="submit" mat-raised-button color="accent"matTooltip="Click Reset Button" (click)="register = 'staff'">Staff register</button>  
+          &nbsp;   &nbsp; &nbsp;&nbsp;
+          <button type="reset" mat-raised-button color="accent"matTooltip="Cancel" routerLink="/login">Go to Login</button>  
+        </div> 
     </span>
   </div>
     <div class="col-lg-4"></div>
-</div>
-<div class="row">
-    <div class="col-lg-4"></div>
-<div class="col-lg-4">
-<select class="form-control mb-4" [(ngModel)]="register">
-    <option value="false">Are you Student/Staff</option>
-    <option *ngFor="let role of roles">{{role}}</option>
-  </select>
-</div>
-<div class="col-lg-4"></div>
 </div>
 <div class="row">
 <div class="col-lg-4"></div>

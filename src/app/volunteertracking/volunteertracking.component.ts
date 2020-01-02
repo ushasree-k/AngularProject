@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { VolunteerTrackingModel } from '../Model/volunteerTracking.model';
 import { Router } from '@angular/router';
-
+import {VolunteerTrackingService} from '../Services/volunteertracking.service';
+import { UserModel } from '../Model/user.model';
+import { FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-volunteertracking',
   templateUrl: './volunteertracking.component.html',
@@ -10,13 +12,15 @@ import { Router } from '@angular/router';
 export class VolunteertrackingComponent implements OnInit {
   contenteditable:boolean;
   actiontext:string;
-  VolunteerList:VolunteerTrackingModel[]=[
-    {"StudentId" : 123,"userName":"test", "StudentName":"john","DateOfService":'2019-12-12',"HoursCompleted":2,"Preparation":"","Action":"","Reflection":"","SupervisorFeedback":"","Approved":"",DateApproved:'2019-12-12',"SupervisorUserName":"xyz"},
-    {"StudentId" : 121,"userName":"usha","StudentName":"dean","DateOfService":'2019-12-12',"HoursCompleted":2,"Preparation":"","Action":"","Reflection":"","SupervisorFeedback":"","Approved":"",DateApproved:'2019-12-12',"SupervisorUserName":"xxx"},
-    {"StudentId" : 132,"userName":"sarat","StudentName":"sarah","DateOfService":'2019-12-12',"HoursCompleted":2,"Preparation":"","Action":"","Reflection":"","SupervisorFeedback":"","Approved":"",DateApproved:'2019-12-12',"SupervisorUserName":"vvv"}];
-  constructor(private router:Router) {
-    var user = JSON.parse(localStorage.getItem('currentUser'));
-    if(user){
+  currentUser:UserModel;
+  VolunteerList:VolunteerTrackingModel[]=[];
+  voluteerForm: any;
+  message: string;
+  studentIdUpdate  = null;
+  dataSaved: boolean = false;
+  constructor(private formbulider: FormBuilder,private router:Router,private volunteerTrackingService:VolunteerTrackingService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if(this.currentUser){
         //this.router.navigate(['volunteer']);
     }
     else{
@@ -24,12 +28,75 @@ export class VolunteertrackingComponent implements OnInit {
     }
     this.contenteditable = false;
     this.actiontext="Edit";
-    if(user[0].Role=='Student'){
-    this.VolunteerList = this.VolunteerList.filter(x=>x.userName == user[0].UserName)}
    }
 
   ngOnInit() {
+    this.voluteerForm = this.formbulider.group({  
+      StudentName: ['', [Validators.required]],  
+      DateOfService: ['', [Validators.required]],  
+      HoursCompleted: ['', [Validators.required]],  
+      Preparation: ['', [Validators.required]],  
+      Action: ['', [Validators.required]],  
+      Reflection: [''],  
+      SupervisorFeedback: [''],  
+      Approved: [''],  
+      DateApproved: [''],  
+      SupervisorUserName: [''],  
+    });  
+    this.loadAllVolunteerData();
   }
+
+  onFormSubmit() {  
+    this.dataSaved = false;  
+    const student = this.voluteerForm.value;  
+    this.CreateStudent(student);  
+    this.voluteerForm.reset();  
+  }  
+  CreateStudent(student: VolunteerTrackingModel) {  
+    console.log(student);
+    if (this.studentIdUpdate== null) { 
+       student.Approved="2"; 
+       var x= this.volunteerTrackingService.getMaxStudentId();
+       student.StudentId = x+1;
+      var resp = this.volunteerTrackingService.createStudent(student);
+        
+          this.dataSaved = true;  
+          this.message = 'Record saved Successfully';  
+          this.loadAllVolunteerData();  
+          this.studentIdUpdate = null;  
+          this.voluteerForm.reset();  
+        }  
+      
+    else {  
+      student.StudentId = this.studentIdUpdate;
+      this.volunteerTrackingService.updateStudent(student)
+        this.dataSaved = true;  
+        this.message = 'Record Updated Successfully';  
+        this.loadAllVolunteerData();  
+        this.voluteerForm.reset();  
+    }  
+  }   
+
+  loadAllVolunteerData(){
+    this.VolunteerList= this.volunteerTrackingService.getVolunteerData(this.currentUser)
+  }
+
+  loadStudentDataToEdit(employeeId: string) {  
+    var data = this.volunteerTrackingService.getStudentById(Number.parseInt(employeeId))[0];
+    this.studentIdUpdate = data.StudentId;
+    this.message = null;  
+    this.dataSaved = false;  
+     this.voluteerForm.controls['StudentName'].setValue(data.StudentName);  
+     this.voluteerForm.controls['DateOfService'].setValue(data.DateOfService);  
+      this.voluteerForm.controls['HoursCompleted'].setValue(data.HoursCompleted);  
+      this.voluteerForm.controls['Preparation'].setValue(data.Preparation);  
+      this.voluteerForm.controls['Action'].setValue(data.Action);  
+      this.voluteerForm.controls['Reflection'].setValue(data.Reflection);  
+      this.voluteerForm.controls['SupervisorFeedback'].setValue(data.SupervisorFeedback);  
+      this.voluteerForm.controls['Approved'].setValue(data.Approved);  
+      this.voluteerForm.controls['DateApproved'].setValue(data.DateApproved);  
+      this.voluteerForm.controls['SupervisorUserName'].setValue(data.SupervisorUserName);  
+  }  
   onEdit(volunteer:VolunteerTrackingModel){
 if(this.actiontext == "Edit"){
     this.contenteditable = true;
@@ -41,5 +108,19 @@ if(this.actiontext == "Edit"){
         this.contenteditable = false;
     }
   }
+  deleteStudent(employeeId: string) {  
+    if (confirm("Are you sure you want to delete this ?")) {   
+    this.volunteerTrackingService.deleteStudentById(Number.parseInt(employeeId));  
+      this.dataSaved = true;  
+      this.message = 'Record Deleted Succefully';  
+      this.loadAllVolunteerData();  
+      this.studentIdUpdate = null;  
+      this.voluteerForm.reset();  
+  }  }
+  resetForm() {  
+    this.voluteerForm.reset();  
+    this.message = null;  
+    this.dataSaved = false;  
+  }  
 
 }
