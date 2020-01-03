@@ -6,6 +6,7 @@ import { StudentregisterComponent } from './Register/studentregister/studentregi
 import { RegisterComponent } from './Register/register/register.component';
 import { CategoryComponent } from './Category/category/category.component';
 import { VolunteertrackingComponent } from './volunteertracking/volunteertracking.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'studentregister', component: StudentregisterComponent },
   { path: 'category', component: CategoryComponent },
   { path: 'volunteer', component: VolunteertrackingComponent },
+  { path: 'profile', component:MyprofileComponent },
 
   // otherwise redirect to home
   { path: '**', redirectTo: 'login' }

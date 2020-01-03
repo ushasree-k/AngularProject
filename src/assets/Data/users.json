@@ -1,2 +1,5 @@
-[{"UserName":"teja","PassWord":"test","Role":"Student","Status":"Active","Email":"u@gmail.com"},
-    {"UserName":"sarat","PassWord":"text","Role":"superAdmin","Status":"Active","Email":"pj@gmail.com"}]
+[
+    {"age":41,"cellPhone":"12345","email":"test@gmail.com","firstName":"sarat","lastName":"chandra","grade":0,"middleName":"","password":"123456","userName":"sarat","role":"superadmin","school":"","title":"","status":"Active"},
+    {"age":31,"cellPhone":"12345","email":"test2@gmail.com","firstName":"john","lastName":"beshop","grade":0,"middleName":"","password":"123456","userName":"john","role":"staff","school":"","title":"","status":"Active"},
+    {"age":21,"cellPhone":"12345","email":"test3@gmail.com","firstName":"sarah","lastName":"vault","grade":10,"middleName":"","password":"123456","userName":"sarah","role":"student","school":"","title":"","status":"Active"}
+  ]

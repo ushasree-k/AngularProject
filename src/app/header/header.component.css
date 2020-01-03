@@ -1,4 +1,4 @@
-ul {
+#topnav ul  {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -6,11 +6,11 @@ ul {
     background-color: #333;
   }
   
-  li {
+  #topnav li {
     float: left;
   }
   
-  li a {
+  #topnav li a {
     display: block;
     color: white;
     text-align: center;
@@ -18,10 +18,57 @@ ul {
     text-decoration: none;
   }
   
-  li a:hover:not(.active) {
+  #topnav li a:hover:not(.active) {
     background-color: #111;
   }
   
-  .active {
+  #topnav .active {
     background-color: #4CAF50;
+  }
+  
+
+   #sidebar-wrapper {
+    top: 52px;
+    left: -200px;
+    width: 200px;
+    background-color: #5677fc;
+    color: white;
+    position: fixed;
+    height: 100%;
+    z-index: 1;
+  }
+  .sidebar-nav {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    width: 250px;
+    list-style: none;
+  }
+  .sidebar-nav li {
+    text-indent: 20px;
+    line-height: 50px;
+  }
+  .sidebar-nav li a {
+    color: white;
+    display: block;
+    text-decoration: none;
+  }
+  .sidebar-nav li a:hover {
+    background: rgba(255,255,255,0.25);
+    color: white;
+    text-decoration: none;
+  }
+  .sidebar-nav li a:active, .sidebar-nav li a:focus {
+    text-decoration: none;
+  }
+  #sidebar-wrapper.sidebar-toggle {
+    transition: all 0.3s ease-out;
+    margin-left: -200px;
+  }
+  @media (min-width: 768px) {
+    #sidebar-wrapper.sidebar-toggle {
+      transition: 0s;
+      left: 200px;
+    }
   }

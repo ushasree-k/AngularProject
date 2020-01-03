@@ -16,13 +16,28 @@
       </ul>
   </div>
    -->
-
+<div id="topnav">
   <ul>
     <li><a>Hi {{userName}}!</a></li>
-    <li><a routerLink="/volunteer">volunteer Track Sheet</a></li>
-    <li><a routerLink="/category">Category</a></li>
-    <!-- <li><a href="#contact">Users</a></li> -->
-    <li style="float:center"><a class="active">Logged in at : {{logtime | date:'yyyy-MMM-dd HH:mm:ss'}}</a></li>
+    <!-- <li><a routerLink="/volunteer">volunteer Track Sheet</a></li>
+    <li><a routerLink="/category">Category</a></li> -->
+    <li><a class="active">Logged in at : {{logtime | date:'yyyy-MMM-dd HH:mm:ss'}}</a></li>
     <li style="float:right"><a class="active" (click)="onLogout()">Logout</a></li>
   </ul>
-  
+</div>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+      </div>
+      <div id="sidebar-wrapper" class="sidebar-toggle">
+        <ul class="sidebar-nav">
+            <li>
+                <a routerLink="/profile">My Profile</a>
+            </li>
+            <li>
+                <a class="active" routerLink="/volunteer">Voluteer Activity Tracker</a>
+            </li>
+          </ul>
+      </div>
+      </div>
+  </nav>

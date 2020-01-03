@@ -5,28 +5,35 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { VolunteerTrackingModel } from '../Model/volunteerTracking.model';
 import { ThrowStmt } from '@angular/compiler';
+import { RegistrationModel } from '../Model/registration.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistrationService {
-    existingUsers:UserModel[]=[];
-    
+    //existingUsers:UserModel[]=[];
+    existingUsers:RegistrationModel[] = [];
     
     constructor(private httpClient: HttpClient) {
         //private http: HttpClient
             //Service Call to json file or json file can be replacecd with actual DB call 
             if(!localStorage.getItem("existingUsers")){
             this.httpClient.get("assets/Data/users.json").subscribe(data =>{
-              var d = data as UserModel[];
+              var d = data as RegistrationModel[];
             d.forEach(element => {
                 console.log(element);
-                let user = new UserModel();
-                 user.Email = element.Email;
-                 user.PassWord = element.PassWord;
-                 user.Role= element.Role;
-                 user.Status=element.Status;
-                 user.UserName = element.UserName;
+                let user = new RegistrationModel();
+                 user.email = element.email;
+                 user.password = element.password;
+                 user.role= element.role;
+                 user.status=element.status;
+                 user.userName = element.userName;
+                 user.cellPhone = element.cellPhone;
+                 user.firstName = element.firstName;
+                 user.lastName = element.lastName;
+                 user.middleName= element.middleName;
+                 user.grade= element.grade;
+                 user.title= element.title;
                  this.existingUsers.push(user);
                  localStorage.setItem("existingUsers",JSON.stringify(this.existingUsers));
             });
@@ -38,7 +45,7 @@ export class RegistrationService {
       }
 
 
-    RegisterStudent(user:UserModel){
+    RegisterStudent(user:RegistrationModel){
         this.existingUsers.push(user);
         localStorage.setItem("existingUsers",JSON.stringify(this.existingUsers));
         console.log(this.existingUsers);
@@ -47,7 +54,7 @@ export class RegistrationService {
         // });
     }
 
-    RegisterStaff(user:UserModel){
+    RegisterStaff(user:RegistrationModel){
         this.existingUsers.push(user);
         localStorage.setItem("existingUsers",JSON.stringify(this.existingUsers));
         console.log(this.existingUsers);
@@ -55,6 +62,15 @@ export class RegistrationService {
         //     console.log(data);
         // });
     }
+
+    Register(user:RegistrationModel){
+      this.existingUsers.push(user);
+      localStorage.setItem("existingUsers",JSON.stringify(this.existingUsers));
+      console.log(this.existingUsers);
+      // this.httpClient.post("assets/Data/users.json",JSON.stringify(user)).subscribe(data =>{
+      //     console.log(data);
+      // });
+  }
     
     // public get currentUserValue(): UserModel {
     //     return this.currentUserSubject.value;

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertserviceService } from 'src/app/alertservice.service';
 import { UserModel } from 'src/app/Model/user.model';
 import { RegistrationService } from 'src/app/Services/registration.service';
+import { RegistrationModel } from 'src/app/Model/registration.model';
 
 @Component({
   selector: 'app-studentregister',
@@ -15,7 +16,7 @@ export class StudentregisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
   submitted = false;
-    registereduser:UserModel;
+  studentregistereduser:RegistrationModel;
     existinguserList:UserModel[]=[];
   constructor(
       private formBuilder: FormBuilder,
@@ -29,7 +30,7 @@ export class StudentregisterComponent implements OnInit {
       // if (this.authenticationService.currentUserValue) { 
       //     this.router.navigate(['/']);
       // }
-      this.registereduser = new  UserModel();
+      this.studentregistereduser = new  RegistrationModel();
       if(JSON.parse(localStorage.getItem("existinguserList"))){
       this.existinguserList = JSON.parse(localStorage.getItem("existinguserList"));
       }
@@ -60,16 +61,24 @@ export class StudentregisterComponent implements OnInit {
       if (this.registerForm.invalid) {
           return;
       }
-      this.registereduser = new UserModel();
-      this.registereduser.UserName = this.registerForm.get("username").value
-      this.registereduser.PassWord = this.registerForm.get("password").value
-      this.registereduser.Email = this.registerForm.get("email").value
-      this.registereduser.Role = 'Student';
-      this.registereduser.Status = 'Active';
+      this.studentregistereduser = new RegistrationModel();
+      this.studentregistereduser.age = 0;
+      this.studentregistereduser.cellPhone = this.registerForm.get("cellphone").value;
+      this.studentregistereduser.email = this.registerForm.get("email").value;
+      this.studentregistereduser.firstName = this.registerForm.get("firstName").value;
+      this.studentregistereduser.lastName = this.registerForm.get("lastName").value;
+      this.studentregistereduser.middleName = this.registerForm.get("middleName").value;
+      this.studentregistereduser.school = this.registerForm.get("school").value;
+      this.studentregistereduser.userName = this.registerForm.get("username").value;
+      this.studentregistereduser.password = this.registerForm.get("password").value;
+      this.studentregistereduser.title= "";
+      this.studentregistereduser.grade = this.registerForm.get("grade").value;
+      this.studentregistereduser.role = "student";
+      this.studentregistereduser.status ="Active";
 
       //this.existinguserList.push(this.registereduser);
 
-      this.registrationService.RegisterStudent(this.registereduser);
+      this.registrationService.Register(this.studentregistereduser);
       //localStorage.setItem("existinguserList",JSON.stringify(this.existinguserList));
       this.loading = true;
       this.alertService.success('Registration successful', true);

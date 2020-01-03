@@ -1,0 +1,102 @@
+<app-header [Path]='1'></app-header>
+
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Your Profile Details</h4>
+            <!-- <p class="card-category">Complete your profile</p> -->
+          </div>
+          <div class="card-body">
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="UserName (disabled)" disabled formControlName="username">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email address" type="email" disabled formControlName="email">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Choose Your Role</mat-label>
+                    <select matNativeControl formControlName="role" placeholder="Role">
+                      <option *ngFor="let status of statuses" [ngValue]="status">
+                        {{status}}
+                      </option>
+                    </select>
+                    <!-- <mat-label>Choose your Role</mat-label>
+                    <select class="custom-select" (change)="changeRole($event)" formControlName="role">
+                      <option *ngFor="let status of statuses" [ngValue]="status">{{status}}</option>
+                    </select> -->
+                    <!-- <input matInput placeholder="Role" disabled formControlName="role"> -->
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="First Name" formControlName="firstName">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Last Name" formControlName="lastName">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Middle Name" formControlName="middleName">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="School" formControlName="school">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4" *ngIf="currentUser.role=='student'">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Grade" formControlName="grade">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Cell phone" formControlName="cellphone">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row" *ngIf="currentUser.role!='student'">
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Choose your Title</mat-label>
+                    <select matNativeControl class="custom-select"  formControlName="title">
+                      <option *ngFor="let title of titles" [ngValue]="title">{{title}}</option>
+                    </select>
+                    <!-- <input matInput placeholder="Title" formControlName="title"> -->
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Age" formControlName="age">
+                  </mat-form-field>
+                </div>
+              </div>
+              <button mat-raised-button type="submit" class="btn btn-danger pull-right" [disabled]="!profileForm.touched">Update Profile</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</div>

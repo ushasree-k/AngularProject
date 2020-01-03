@@ -2,6 +2,7 @@ import { Component, OnInit,Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserModel } from '../Model/user.model';
 import { getLocaleDateTimeFormat } from '@angular/common';
+import { RegistrationModel } from '../Model/registration.model';
 
 @Component({
   selector: 'app-header',
@@ -13,11 +14,12 @@ export class HeaderComponent implements OnInit {
 step1:string;
 step2:string;
 userName:string;
-user:UserModel;
+user:RegistrationModel;
 logtime:Date;
   constructor(private router:Router) { 
     this.user =JSON.parse(localStorage.getItem('currentUser'));
-    this.userName= this.user[0].UserName;
+    console.log(this.user);
+    this.userName= this.user.userName;
     this.logtime =new Date();
   }
 

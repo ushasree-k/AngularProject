@@ -67,7 +67,7 @@
                     <span *ngIf="!voluteerForm.get('Gender').value && voluteerForm.get('Gender').touched"></span>  
                   </mat-error>  
                 </td>   -->
-                <td class="tbl1" *ngIf="currentUser[0].Role !='Student'">  
+                <td class="tbl1" *ngIf="currentUser.role !='Student'">  
                   <mat-form-field class="demo-full-width">  
                     <input formControlName="Reflection" matTooltip="Enter Reflection" matInput placeholder="Reflection">  
                   </mat-form-field>  
@@ -84,7 +84,7 @@
                   </mat-error>  
                 </td>  
 
-                <td class="tbl1" *ngIf="currentUser[0].Role !='Student'">  
+                <td class="tbl1" *ngIf="currentUser.role !='Student'">  
                   <span>Status</span>  
                   <br><br>  
                   <mat-radio-group matTooltip="Select Status"formControlName="Approved">  
@@ -95,7 +95,7 @@
                     <span *ngIf="!voluteerForm.get('Approved').value && voluteerForm.get('Approved').touched"></span>  
                   </mat-error>  
                 </td>  
-                <td class="tbl1" *ngIf="currentUser[0].Role !='Student'">  
+                <td class="tbl1" *ngIf="currentUser.role !='Student'">  
                   <mat-form-field class="demo-full-width">  
                     <input matInput [matDatepicker]="pickeranother"matTooltip="Date Of Approved" formControlName="DateApproved"placeholder="Choose Date Of Approved">  
                     <mat-datepicker-toggle matSuffix [for]="pickeranother"></mat-datepicker-toggle>  
@@ -105,7 +105,7 @@
                     <span *ngIf="!voluteerForm.get('DateApproved').value && voluteerForm.get('DateApproved').touched"></span>  
                   </mat-error>  
                 </td>  
-                <td class="tbl1" *ngIf="currentUser[0].Role !='Student'">  
+                <td class="tbl1" *ngIf="currentUser.role !='Student'">  
                   <mat-form-field class="demo-full-width">  
                     <input formControlName="SupervisorUserName" matTooltip="Enter SupervisorUserName" matInput placeholder="SupervisorUserName">  
                   </mat-form-field>  
@@ -133,6 +133,7 @@
       <table class="table" >  
           <tr ngclass="btn-primary">  
             <th class="tb12">StudentName</th>
+            <!-- <th class="tb12" *ngIf="currentUser.role=='superadmin'">Role</th> -->
             <th class="tb12">DateOfService</th>
             <th class="tb12">Hours</th>
             <th class="tb12">Preparation</th>
@@ -147,6 +148,7 @@
           </tr>  
           <tr *ngFor="let volunteer of VolunteerList">  
               <td class="tbl2">{{ volunteer.StudentName }}</td>
+              <!-- <td class="tbl2" *ngIf="currentUser.role=='superadmin'">{{ volunteer.role }}</td> -->
               <td class="tbl2">{{ volunteer.DateOfService | date }}</td>
               <td class="tbl2">{{ volunteer.HoursCompleted }}</td>
               <td class="tbl2">{{ volunteer.Preparation }}</td>

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {VolunteerTrackingService} from '../Services/volunteertracking.service';
 import { UserModel } from '../Model/user.model';
 import { FormBuilder, Validators } from '@angular/forms';
+import { RegistrationModel } from '../Model/registration.model';
 @Component({
   selector: 'app-volunteertracking',
   templateUrl: './volunteertracking.component.html',
@@ -12,7 +13,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class VolunteertrackingComponent implements OnInit {
   contenteditable:boolean;
   actiontext:string;
-  currentUser:UserModel;
+  currentUser:RegistrationModel;
   VolunteerList:VolunteerTrackingModel[]=[];
   voluteerForm: any;
   message: string;
@@ -58,6 +59,7 @@ export class VolunteertrackingComponent implements OnInit {
        student.Approved="2"; 
        var x= this.volunteerTrackingService.getMaxStudentId();
        student.StudentId = x+1;
+       student.userName = this.currentUser.userName;
       var resp = this.volunteerTrackingService.createStudent(student);
         
           this.dataSaved = true;  
@@ -69,6 +71,7 @@ export class VolunteertrackingComponent implements OnInit {
       
     else {  
       student.StudentId = this.studentIdUpdate;
+      student.userName = this.currentUser.userName;
       this.volunteerTrackingService.updateStudent(student)
         this.dataSaved = true;  
         this.message = 'Record Updated Successfully';  
@@ -95,7 +98,7 @@ export class VolunteertrackingComponent implements OnInit {
       this.voluteerForm.controls['SupervisorFeedback'].setValue(data.SupervisorFeedback);  
       this.voluteerForm.controls['Approved'].setValue(data.Approved);  
       this.voluteerForm.controls['DateApproved'].setValue(data.DateApproved);  
-      this.voluteerForm.controls['SupervisorUserName'].setValue(data.SupervisorUserName);  
+      this.voluteerForm.controls['SupervisorUserName'].setValue(data.SupervisorUserName); 
   }  
   onEdit(volunteer:VolunteerTrackingModel){
 if(this.actiontext == "Edit"){

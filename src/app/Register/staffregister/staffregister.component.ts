@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {AlertserviceService} from '../../alertservice.service';
 import { UserModel } from 'src/app/Model/user.model';
+import { StudentRegistrationModel, StaffRegistrationModel, RegistrationModel } from 'src/app/Model/registration.model';
 import { RegistrationService } from 'src/app/Services/registration.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class StaffregisterComponent implements OnInit {
   titles:string[];
   statuses:string[];
   registereduser:UserModel;
+  staffregistereduser:RegistrationModel;
   existinguserList:UserModel[]=[];
   constructor(
       private formBuilder: FormBuilder,
@@ -37,6 +39,7 @@ export class StaffregisterComponent implements OnInit {
       this.existinguserList = JSON.parse(localStorage.getItem("existinguserList"));
       }
       console.log(this.existinguserList);
+      this.staffregistereduser = new RegistrationModel();
   }
 
   ngOnInit() {
@@ -75,8 +78,24 @@ export class StaffregisterComponent implements OnInit {
       this.registereduser.Role = this.registerForm.get("role").value;
       this.registereduser.Status = 'Active';
 
+      this.staffregistereduser.age = this.registerForm.get("age").value;
+      this.staffregistereduser.cellPhone = this.registerForm.get("cellphone").value;
+      this.staffregistereduser.email = this.registerForm.get("email").value;
+      this.staffregistereduser.firstName = this.registerForm.get("firstName").value;
+      this.staffregistereduser.lastName = this.registerForm.get("lastName").value;
+      this.staffregistereduser.middleName = this.registerForm.get("middleName").value;
+      this.staffregistereduser.school = this.registerForm.get("organization").value;
+      this.staffregistereduser.userName = this.registerForm.get("username").value;
+      this.staffregistereduser.password = this.registerForm.get("password").value;
+      this.staffregistereduser.title= this.registerForm.get("title").value;
+      this.staffregistereduser.status ="Active";
+      // this.staffregistereduser.school ="";
+    
+      
+      //localStorage.setItem("staffregistereduser", JSON.stringify(this.staffregistereduser));
+
       // this.existinguserList.push(this.registereduser);
-      this.registrationService.RegisterStaff(this.registereduser);
+      this.registrationService.Register(this.staffregistereduser);
       // console.log(this.existinguserList)
       // localStorage.setItem("existinguserList",JSON.stringify(this.existinguserList));
       this.loading = true;

@@ -5,6 +5,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { VolunteerTrackingModel } from '../Model/volunteerTracking.model';
 import { ThrowStmt } from '@angular/compiler';
+import { RegistrationModel } from '../Model/registration.model';
 
 @Injectable({
   providedIn: 'root'
@@ -47,14 +48,14 @@ export class VolunteerTrackingService {
     //     return this.currentUserSubject.value;
     // }
 
-    getVolunteerData(user:UserModel) {
+    getVolunteerData(user:RegistrationModel) {
       
       //To be deleted when actual services are applied
       //console.log(this.existingUsers);
-      console.log(user[0]);
+      console.log(user);
       console.log(this.existingvolunteerdata);
-      if (user[0].Role === 'Student' || user[0].Role === 'student' ){
-      this.volunteerData = this.existingvolunteerdata.filter(x=>(x.userName== user[0].UserName));
+      if (user.role === 'Student' || user.role === 'student' ){
+      this.volunteerData = this.existingvolunteerdata.filter(x=>(x.userName== user.userName));
       console.log(this.volunteerData);
       }
       else{
